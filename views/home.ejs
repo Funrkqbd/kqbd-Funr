@@ -1,0 +1,128 @@
+<%- include('partials/header') %>
+
+<main>
+  <section class="hero">
+    <div class="container hero-content">
+      <div>
+        <span class="eyebrow">Theo dõi thể thao 24/7</span>
+        <h1>Kết quả bóng đá mới nhất</h1>
+        <p>Giữ cập nhật mọi trận cầu hấp dẫn, bảng xếp hạng và tin tức giải đấu.</p>
+        <div class="hero-actions">
+          <a class="primary-button" href="/matches">Xem lịch thi đấu</a>
+          <a class="secondary-button" href="/standings">Xem BXH</a>
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <h3>Trận đang diễn ra</h3>
+        <% liveMatches.forEach((match) => { %>
+          <div class="live-item">
+            <div class="match-topline"><span><%= match.league %></span><span class="live-pill">LIVE</span></div>
+            <div class="scoreline">
+              <strong><%= match.home %></strong>
+              <span><%= match.homeScore %> - <%= match.awayScore %></span>
+              <strong><%= match.away %></strong>
+            </div>
+            <small>Phút <%= match.minute %> · <%= match.summary %></small>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats container">
+    <div class="stat-card">
+      <span>Trận hot</span>
+      <strong><%= matches.length %></strong>
+    </div>
+    <div class="stat-card">
+      <span>Giải đấu</span>
+      <strong><%= leagues.length - 1 %></strong>
+    </div>
+    <div class="stat-card">
+      <span>Đội bóng</span>
+      <strong>18</strong>
+    </div>
+    <div class="stat-card">
+      <span>Hôm nay</span>
+      <strong>12</strong>
+    </div>
+  </section>
+
+  <section class="container content-grid">
+    <div class="panel matches-panel">
+      <div class="panel-header">
+        <h2>Kết quả mới nhất</h2>
+        <a href="/matches">Xem tất cả</a>
+      </div>
+
+      <% matches.slice(0, 4).forEach((match) => { %>
+        <article class="match-card">
+          <div class="match-meta">
+            <span><%= match.league %></span>
+            <span class="status <%= match.status.toLowerCase() %>"><%= match.status %></span>
+          </div>
+          <div class="teams-row">
+            <div class="team-block">
+              <span><%= match.home %></span>
+              <strong><%= match.homeScore %></strong>
+            </div>
+            <div class="divider">:</div>
+            <div class="team-block align-right">
+              <strong><%= match.awayScore %></strong>
+              <span><%= match.away %></span>
+            </div>
+          </div>
+          <p><%= match.summary %></p>
+        </article>
+      <% }) %>
+    </div>
+
+    <aside class="panel ranking-panel">
+      <div class="panel-header">
+        <h2>Bảng xếp hạng</h2>
+        <a href="/standings">Chi tiết</a>
+      </div>
+      <table class="ranking-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Đội</th>
+            <th>PTS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% standings.slice(0, 5).forEach((team, index) => { %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= team.team %></td>
+              <td><%= team.points %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </aside>
+  </section>
+
+  <section id="news" class="container news-section">
+    <div class="section-title">
+      <h2>Tin tức thể thao</h2>
+    </div>
+
+    <div class="news-grid">
+      <% news.forEach((article) => { %>
+        <article class="news-card">
+          <span class="news-tag"><%= article.category %></span>
+          <h3><%= article.title %></h3>
+          <p><%= article.excerpt %></p>
+          <div class="news-meta">
+            <span><%= article.date %></span>
+            <a href="/news/<%= article.slug %>">Đọc thêm</a>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>

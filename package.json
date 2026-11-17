@@ -1,0 +1,23 @@
+{
+  "name": "kqbd-funr",
+  "version": "1.0.0",
+  "description": "Node.js sports results website inspired by cubabevcorp.com",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "sports",
+    "football",
+    "results",
+    "express",
+    "nodejs"
+  ],
+  "author": "Copilot",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  }
+}

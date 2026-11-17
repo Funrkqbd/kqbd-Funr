@@ -1,0 +1,46 @@
+<%- include('partials/header') %>
+
+<main class="container page-shell">
+  <section class="page-top">
+    <div>
+      <span class="eyebrow">Lịch thi đấu</span>
+      <h1>Các trận đấu nổi bật</h1>
+    </div>
+    <form class="league-filter" method="GET" action="/matches">
+      <label for="league">Giải đấu</label>
+      <select id="league" name="league" onchange="this.form.submit()">
+        <% leagues.forEach((league) => { %>
+          <option value="<%= league %>" <%= league === selectedLeague ? 'selected' : '' %>><%= league %></option>
+        <% }) %>
+      </select>
+    </form>
+  </section>
+
+  <section class="match-list">
+    <% matches.forEach((match) => { %>
+      <article class="match-card large">
+        <div class="match-meta">
+          <span><%= match.league %></span>
+          <span class="status <%= match.status.toLowerCase() %>"><%= match.status %></span>
+        </div>
+        <div class="teams-row big">
+          <div class="team-block">
+            <span><%= match.home %></span>
+            <strong><%= match.homeScore %></strong>
+          </div>
+          <div class="divider">:</div>
+          <div class="team-block align-right">
+            <strong><%= match.awayScore %></strong>
+            <span><%= match.away %></span>
+          </div>
+        </div>
+        <div class="match-footer">
+          <small><%= match.stadium %></small>
+          <small><%= match.kickoff %></small>
+        </div>
+      </article>
+    <% }) %>
+  </section>
+</main>
+
+<%- include('partials/footer') %>

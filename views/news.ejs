@@ -1,0 +1,39 @@
+<%- include('partials/header') %>
+
+<main class="container page-shell news-page">
+  <article class="article-card">
+    <span class="news-tag"><%= article.category %></span>
+    <h1><%= article.title %></h1>
+    <div class="article-meta">
+      <span><%= article.date %></span>
+      <span>·</span>
+      <span><%= article.author %></span>
+    </div>
+
+    <p>
+      Cập nhật tình hình mới nhất từ thế giới bóng đá: đội bóng đang có nhịp chơi ổn định,
+      các cầu thủ chủ chốt được trao nhiều vai trò và tiếp tục phát huy hiệu quả trên sân.
+    </p>
+    <p>
+      Từ đầu mùa giải đến hiện tại, phong độ của đội đã cho thấy sự tiến bộ rõ rệt về cả chiến thuật
+      lẫn tinh thần thi đấu. Những thay đổi trong cách vận hành đội hình đã giúp họ tăng cường khả năng
+      kiểm soát trận đấu và ép đối phương phải trả giá khi mắc sai lầm.
+    </p>
+    <p>
+      Trận đấu tới hứa hẹn sẽ tiếp tục là một cuộc đối đầu đáng xem khi cả hai bên đều đang có nhu cầu
+      lớn để cải thiện vị trí trên bảng xếp hạng, đồng thời duy trì phong độ ở những vòng tiếp theo.
+    </p>
+  </article>
+
+  <aside class="related-panel panel">
+    <h3>Bài viết liên quan</h3>
+    <% related.forEach((item) => { %>
+      <a href="/news/<%= item.slug %>" class="related-item">
+        <span><%= item.category %></span>
+        <strong><%= item.title %></strong>
+      </a>
+    <% }) %>
+  </aside>
+</main>
+
+<%- include('partials/footer') %>

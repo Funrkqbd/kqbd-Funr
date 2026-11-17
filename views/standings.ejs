@@ -1,0 +1,47 @@
+<%- include('partials/header') %>
+
+<main class="container page-shell">
+  <section class="page-top">
+    <div>
+      <span class="eyebrow">Bảng xếp hạng</span>
+      <h1>BXH giải đấu</h1>
+    </div>
+  </section>
+
+  <section class="panel standings-panel">
+    <table class="standings-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Đội</th>
+          <th>ST</th>
+          <th>W</th>
+          <th>D</th>
+          <th>L</th>
+          <th>GF</th>
+          <th>GA</th>
+          <th>GD</th>
+          <th>PTS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% standings.forEach((team, index) => { %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= team.team %></td>
+            <td><%= team.played %></td>
+            <td><%= team.wins %></td>
+            <td><%= team.draws %></td>
+            <td><%= team.losses %></td>
+            <td><%= team.gf %></td>
+            <td><%= team.ga %></td>
+            <td><%= team.gd %></td>
+            <td><strong><%= team.points %></strong></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<%- include('partials/footer') %>
